@@ -46,6 +46,34 @@ public class VendingMachine {
     public void setBalance(BigDecimal balance) { this.balance = balance; }
     public List<VendingMachineItem> getMachineItems() { return machineItems; }
 
+    //methods
+
+    public BigDecimal addToPurchase() {
+        //if the user input matches the slotIdentifier,
+        // then get the price and add it to current money provided,
+        // subtract 1 from numOfItems
+        //
+        if()
+
+    }
+
+    //prints name, cost, money remaining, and returns the message based on the Type
+    public String dispenseItem() {
+
+    }
+
+
+
+    //put each line into file
+    //date - time - (the method or snack name) - amount deposited - new balance
+    public String logTransaction() {
+
+
+    }
+
+
+
+
 
 
 }
