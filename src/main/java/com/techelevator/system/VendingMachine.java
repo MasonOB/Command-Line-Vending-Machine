@@ -1,24 +1,27 @@
 package com.techelevator.system;
 
-import com.techelevator.system.VendingMachineItem;
+import com.techelevator.VendingMachineCLI;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class VendingMachine {
 
+    private BigDecimal balance;
+
     public VendingMachine() {
 
     }
 
-    private File vendingMachineMenu = new File("C:\\Users\\Student\\workspace\\mason-bokon-student-code\\nlr-8-module-1-capstone-orange-team-7\\vendingmachine.csv");
+    private File vendingMachineMenu = new File("C:\\Users\\Student\\workspace\\nlr-8-module-1-capstone-orange-team-7\\vendingmachine.csv");
 
-    public List<VendingMachineItem> machineItems = new ArrayList<>();
+    private List<VendingMachineItem> machineItems = new ArrayList<>();
 
-    public void runMenu() {
+    public List<VendingMachineItem> runMenu() {
         try (Scanner menuReader = new Scanner(vendingMachineMenu)) {
             while (menuReader.hasNextLine()) {
                 String currentLine = menuReader.nextLine();
@@ -29,21 +32,21 @@ public class VendingMachine {
                 String type = itemDetails[3];
                 machineItems.add(new VendingMachineItem(slotIdentifier, name, price, type));
             }
+            return machineItems;
+
         } catch (FileNotFoundException ex) {
             System.out.println("File not found.");
         }
+        return null;
     }
 
+    // getters/setters
 
-    //getter
+    public BigDecimal getBalance() { return balance; }
+    public void setBalance(BigDecimal balance) { this.balance = balance; }
+    public List<VendingMachineItem> getMachineItems() { return machineItems; }
 
 
-    public List<VendingMachineItem> getMachineItems() {
-        return machineItems;
-    }
 
-    @Override
-    public String toString() {
-        return machineItems.toString();
-    }
 }
+

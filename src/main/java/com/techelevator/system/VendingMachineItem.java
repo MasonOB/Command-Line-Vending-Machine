@@ -38,5 +38,7 @@ public class VendingMachineItem {
     }
 
 
-
+    public String toString() {
+        return getSlotIdentifier() + "|" + getName() + "|" + getPrice() + "|" + getNumOfItems() + " in stock";
+    }
 }
