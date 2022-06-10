@@ -131,14 +131,17 @@ public class VendingMachine {
             return "Here is your change: " + numberOfQuarters + " quarters";
         } else if (newBalance.remainder(twentyFive) == five) {
             return "Here is your change: " + numberOfQuarters + " quarters, 2 dimes";
-        }  else if (newBalance.remainder(twentyFive) == ten) {
+        } else if (newBalance.remainder(twentyFive) == ten) {
             return "Here is your change: " + numberOfQuarters + " quarters, 1 dime, 1 nickel";
         } else if (newBalance.remainder(twentyFive) == fifteen) {
             return "Here is your change: " + numberOfQuarters + " quarters, 1 dime";
         } else if (newBalance.remainder(twentyFive) == twenty) {
             return "Here is your change: " + numberOfQuarters + " quarters, 1 nickel";
+        }
         this.newBalance = BigDecimal.valueOf(0.00);
+        return "";
     }
+
 }
 
 
