@@ -7,6 +7,10 @@ public class Gum extends VendingMachineItem implements Dispensable {
         super(slotIdentifier, name, price, type);
     }
 
+    public Gum() {
+
+    }
+
     @Override
     public String getMessage() {
         return "Chew Chew, Pop!";

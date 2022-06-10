@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,9 @@ public class VendingMachine {
     BigDecimal newBalance = new BigDecimal("0.00");
 
     Chip chipMessage = new Chip();
+    Gum gumMessage = new Gum();
+    Drink drinkMessage = new Drink();
+    Candy candyMessage = new Candy();
 
     public VendingMachine() {
 
@@ -83,12 +87,15 @@ public class VendingMachine {
 
         for (int i = 0; i < machineItems.size(); i++) {
             if (machineItems.get(i).getSlotIdentifier().equals(slotPicked)) {
-
                 System.out.println(machineItems.get(i).getName() + " " + machineItems.get(i).getPrice() + " $" + newBalance);
                 if (machineItems.get(i).getType().equals("Chip")) {
-
                     System.out.println(chipMessage.getMessage());
-
+                } else if (machineItems.get(i).getType().equals("Gum")) {
+                    System.out.println(gumMessage.getMessage());
+                } else if (machineItems.get(i).getType().equals("Candy")) {
+                    System.out.println(candyMessage.getMessage());
+                } else if (machineItems.get(i).getType().equals("Drink")) {
+                    System.out.println(drinkMessage.getMessage());
                 }
             }
         }
@@ -108,7 +115,29 @@ public class VendingMachine {
             System.out.println("Unable to write to file");
         }
 */
-        return chipMessage.getMessage();
+        return "";
+    }
+
+    public String dispenseChange() {
+        BigDecimal zero = new BigDecimal(0);
+        BigDecimal five = new BigDecimal(5);
+        BigDecimal ten = new BigDecimal(10);
+        BigDecimal fifteen = new BigDecimal(15);
+        BigDecimal twenty = new BigDecimal(20);
+        BigDecimal twentyFive = new BigDecimal(25);
+        BigDecimal numberOfQuarters = newBalance.divide(twentyFive, RoundingMode.DOWN);
+
+        if (newBalance.remainder(twentyFive) == zero) {
+            return "Here is your change: " + numberOfQuarters + " quarters";
+        } else if (newBalance.remainder(twentyFive) == five) {
+            return "Here is your change: " + numberOfQuarters + " quarters, 2 dimes";
+        }  else if (newBalance.remainder(twentyFive) == ten) {
+            return "Here is your change: " + numberOfQuarters + " quarters, 1 dime, 1 nickel";
+        } else if (newBalance.remainder(twentyFive) == fifteen) {
+            return "Here is your change: " + numberOfQuarters + " quarters, 1 dime";
+        } else if (newBalance.remainder(twentyFive) == twenty) {
+            return "Here is your change: " + numberOfQuarters + " quarters, 1 nickel";
+        this.newBalance = BigDecimal.valueOf(0.00);
     }
 }
 

@@ -7,6 +7,10 @@ public class Candy extends VendingMachineItem implements Dispensable {
         super(slotIdentifier, name, price, type);
     }
 
+    public Candy() {
+
+    }
+
     @Override
     public String getMessage() {
         return "Munch Munch, Mmm-Good!";

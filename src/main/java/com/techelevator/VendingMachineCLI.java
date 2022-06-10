@@ -73,10 +73,9 @@ public class VendingMachineCLI {
                             String slotPicked = userInput.nextLine();
                             balance = itemDisplay.addToPurchase(slotPicked, balance);
                             itemDisplay.dispenseItem(slotPicked);
-
                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
-
-
+                            itemDisplay.dispenseChange();
+                            System.out.println("Thanks, breh");
                         }
                     }
                 } catch (Exception ex) {
