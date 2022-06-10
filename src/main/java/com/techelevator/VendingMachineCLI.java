@@ -22,9 +22,15 @@ public class VendingMachineCLI {
 
     private Menu menu;
     private Menu secondMenu;
-    private BigDecimal balance = new BigDecimal("0.00");
+    private static BigDecimal balance = new BigDecimal("0.00");
+
+    VendingMachine itemDisplay = new VendingMachine();
+    VendingMachine transactionLog = new VendingMachine();
 
     Scanner userInput = new Scanner(System.in);
+
+    public static BigDecimal getBalance() { return balance; }
+    public void setBalance(BigDecimal balance) { this.balance = balance; }
 
 
     public VendingMachineCLI(Menu menu) {
@@ -32,7 +38,6 @@ public class VendingMachineCLI {
     }
 
     public void run() {
-        VendingMachine itemDisplay = new VendingMachine();
         itemDisplay.runMenu();
         while (true) {
             String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
@@ -60,7 +65,7 @@ public class VendingMachineCLI {
                             System.out.println("Please enter slot number: ");
                             String slotPicked = userInput.nextLine();
 
-
+                            transactionLog.logTransaction();
                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
 
                         }

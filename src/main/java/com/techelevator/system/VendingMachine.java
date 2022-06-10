@@ -4,6 +4,8 @@ import com.techelevator.VendingMachineCLI;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,11 @@ import java.util.Scanner;
 
 public class VendingMachine {
 
-    private BigDecimal balance;
+    private String slotPicked;
+
+    VendingMachineItem equalsSlotIdentifier = new VendingMachineItem();
+    VendingMachineItem subtractItem = new VendingMachineItem();
+    VendingMachineItem gettingThePrice = new VendingMachineItem();
 
     public VendingMachine() {
 
@@ -42,8 +48,6 @@ public class VendingMachine {
 
     // getters/setters
 
-    public BigDecimal getBalance() { return balance; }
-    public void setBalance(BigDecimal balance) { this.balance = balance; }
     public List<VendingMachineItem> getMachineItems() { return machineItems; }
 
     //methods
@@ -53,7 +57,16 @@ public class VendingMachine {
         // then get the price and add it to current money provided,
         // subtract 1 from numOfItems
         //
-        if()
+        if (machineItems.contains(slotPicked)) {
+            // isolate the array that contains "slotPicked" in order to change "price", "numOfItems"
+            machineItems.;
+            /*int numberOfItem = equalsSlotIdentifier.getNumOfItems();
+            numberOfItem -= 1;
+            subtractItem.setNumOfItems(numberOfItem);
+            BigDecimal convertedPrice = new BigDecimal(equalsSlotIdentifier.getPrice());
+            BigDecimal newBalance = new BigDecimal("0.00");
+            newBalance = VendingMachineCLI.getBalance() - convertedPrice;*/
+        }
 
     }
 
@@ -66,8 +79,16 @@ public class VendingMachine {
 
     //put each line into file
     //date - time - (the method or snack name) - amount deposited - new balance
+    String filePath = "C:\\Users\\Student\\workspace\\nlr-8-module-1-capstone-orange-team-7\\Log.txt";
+    File vendingMachineLog = new File(filePath);
     public String logTransaction() {
+        try(PrintWriter logger = new PrintWriter(new FileOutputStream(vendingMachineLog, true))) {
 
+
+
+        } catch(Exception ex) {
+            System.out.println("Unable to write to file");
+        }
 
     }
 

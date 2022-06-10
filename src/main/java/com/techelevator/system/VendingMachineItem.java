@@ -11,6 +11,15 @@ public class VendingMachineItem {
     private String type;
     private int numOfItems = 5;
 
+    public VendingMachineItem(String slotIdentifier) {
+        this.slotIdentifier = slotIdentifier;
+    }
+
+    public VendingMachineItem(String price, int numOfItems) {
+        this.price = price;
+        this.numOfItems = numOfItems;
+    }
+
 
     public VendingMachineItem(String slotIdentifier, String name, String price, String type) {
         this.slotIdentifier = slotIdentifier;
@@ -18,6 +27,14 @@ public class VendingMachineItem {
         this.price = price;
         this.type = type;
 
+    }
+
+    public VendingMachineItem() {
+
+    }
+
+    public static void setNumOfItems(int numOfItems) {
+        this.numOfItems = numOfItems;
     }
 
     //getters & setters
@@ -40,5 +57,9 @@ public class VendingMachineItem {
 
     public String toString() {
         return getSlotIdentifier() + "|" + getName() + "|" + getPrice() + "|" + getNumOfItems() + " in stock";
+    }
+
+    public String whenSlotIsPicked() {
+
     }
 }
