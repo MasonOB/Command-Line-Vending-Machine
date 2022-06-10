@@ -2,7 +2,7 @@ package com.techelevator.system;
 
 import java.math.BigDecimal;
 
-public class VendingMachineItem {
+public class VendingMachineItem extends VendingMachine implements Dispensable{
 
     //instance variables
     private String slotIdentifier;
@@ -10,6 +10,11 @@ public class VendingMachineItem {
     private String price;
     private String type;
     private int numOfItems = 5;
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
 
     public VendingMachineItem(String slotIdentifier) {
         this.slotIdentifier = slotIdentifier;
@@ -33,7 +38,7 @@ public class VendingMachineItem {
 
     }
 
-    public static void setNumOfItems(int numOfItems) {
+    public void setNumOfItems(int numOfItems) {
         this.numOfItems = numOfItems;
     }
 
@@ -54,12 +59,14 @@ public class VendingMachineItem {
         return slotIdentifier;
     }
 
+    public String getType() { return type; }
 
+
+    //methods
     public String toString() {
         return getSlotIdentifier() + "|" + getName() + "|" + getPrice() + "|" + getNumOfItems() + " in stock";
     }
 
-    public String whenSlotIsPicked() {
 
-    }
+
 }

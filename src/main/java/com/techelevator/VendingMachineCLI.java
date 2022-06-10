@@ -11,6 +11,10 @@ import java.util.Scanner;
 
 public class VendingMachineCLI {
 
+    public VendingMachineCLI() {
+
+    }
+
     private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
     private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
     private static final String MAIN_MENU_OPTION_EXIT = "Exit";
@@ -22,15 +26,16 @@ public class VendingMachineCLI {
 
     private Menu menu;
     private Menu secondMenu;
-    private static BigDecimal balance = new BigDecimal("0.00");
+    private BigDecimal balance = new BigDecimal("0.00");
 
     VendingMachine itemDisplay = new VendingMachine();
     VendingMachine transactionLog = new VendingMachine();
 
     Scanner userInput = new Scanner(System.in);
 
-    public static BigDecimal getBalance() { return balance; }
-    public void setBalance(BigDecimal balance) { this.balance = balance; }
+    public BigDecimal getBalance() { return balance; }
+    public void setBalance(BigDecimal balance) { this.balance = balance;
+    }
 
 
     public VendingMachineCLI(Menu menu) {
@@ -43,17 +48,19 @@ public class VendingMachineCLI {
             String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
             if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
                 // display vending machine items
-                for (VendingMachineItem item : itemDisplay.getMachineItems()) {
-                    System.out.println(item);
-                }
+                 for (VendingMachineItem item : itemDisplay.getMachineItems()) {
+                     System.out.println(item);
+                 }
+
 
             } else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
                 // do purchase
                 System.out.println("Please enter money into the slot ($1, $5, or $10 bills) and enter amount to the cent (i.e. one dollar is \"1.00\": ");
                 String moneyInputAmount = userInput.nextLine();
 
+
                 try {
-                    balance = new BigDecimal(moneyInputAmount);
+                    balance = balance.add(new BigDecimal(moneyInputAmount));
                     while (true) {
                         System.out.println("Current Money Provided: $" + moneyInputAmount);
                         System.out.println("");
@@ -64,9 +71,11 @@ public class VendingMachineCLI {
                             System.out.println(itemDisplay);
                             System.out.println("Please enter slot number: ");
                             String slotPicked = userInput.nextLine();
+                            balance = itemDisplay.addToPurchase(slotPicked, balance);
+                            itemDisplay.dispenseItem(slotPicked);
 
-                            transactionLog.logTransaction();
                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
+
 
                         }
                     }

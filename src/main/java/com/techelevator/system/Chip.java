@@ -1,11 +1,18 @@
 package com.techelevator.system;
 
-import java.math.BigDecimal;
+public class Chip extends VendingMachineItem implements Dispensable {
 
-public class Chip extends VendingMachineItem implements Purchasable{
+    private String message;
+    public Chip() {
+
+    }
 
     public Chip(String slotIdentifier, String name, String price, String type) {
         super(slotIdentifier, name, price, type);
+    }
+
+    public void setMessage() {
+        this.message = message;
     }
 
     @Override

@@ -7,17 +7,16 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class VendingMachine {
 
-    private String slotPicked;
+    BigDecimal newBalance = new BigDecimal("0.00");
 
-    VendingMachineItem equalsSlotIdentifier = new VendingMachineItem();
-    VendingMachineItem subtractItem = new VendingMachineItem();
-    VendingMachineItem gettingThePrice = new VendingMachineItem();
+    Chip chipMessage = new Chip();
 
     public VendingMachine() {
 
@@ -25,7 +24,7 @@ public class VendingMachine {
 
     private File vendingMachineMenu = new File("C:\\Users\\Student\\workspace\\nlr-8-module-1-capstone-orange-team-7\\vendingmachine.csv");
 
-    private List<VendingMachineItem> machineItems = new ArrayList<>();
+    public List<VendingMachineItem> machineItems = new ArrayList<>();
 
     public List<VendingMachineItem> runMenu() {
         try (Scanner menuReader = new Scanner(vendingMachineMenu)) {
@@ -48,37 +47,56 @@ public class VendingMachine {
 
     // getters/setters
 
-    public List<VendingMachineItem> getMachineItems() { return machineItems; }
+    public List<VendingMachineItem> getMachineItems() {
+        return machineItems;
+    }
 
     //methods
 
-    public BigDecimal addToPurchase() {
+    public BigDecimal addToPurchase(String slotPicked, BigDecimal balance) {
         //if the user input matches the slotIdentifier,
         // then get the price and add it to current money provided,
         // subtract 1 from numOfItems
         //
-        if (machineItems.contains(slotPicked)) {
-            // isolate the array that contains "slotPicked" in order to change "price", "numOfItems"
-            machineItems.;
-            /*int numberOfItem = equalsSlotIdentifier.getNumOfItems();
-            numberOfItem -= 1;
-            subtractItem.setNumOfItems(numberOfItem);
-            BigDecimal convertedPrice = new BigDecimal(equalsSlotIdentifier.getPrice());
-            BigDecimal newBalance = new BigDecimal("0.00");
-            newBalance = VendingMachineCLI.getBalance() - convertedPrice;*/
+
+
+        for (int i = 0; i < machineItems.size(); i++) {
+            if (machineItems.get(i).getSlotIdentifier().equals(slotPicked)) {
+
+                int numberOfItem = machineItems.get(i).getNumOfItems();
+                numberOfItem -= 1;
+                machineItems.get(i).setNumOfItems(numberOfItem);
+
+
+                BigDecimal convertedPrice = new BigDecimal(machineItems.get(i).getPrice());
+
+                newBalance = balance.subtract(convertedPrice);
+
+            }
         }
+        return newBalance;
 
     }
 
     //prints name, cost, money remaining, and returns the message based on the Type
-    public String dispenseItem() {
+    public String dispenseItem(String slotPicked) {
 
-    }
+        for (int i = 0; i < machineItems.size(); i++) {
+            if (machineItems.get(i).getSlotIdentifier().equals(slotPicked)) {
+
+                System.out.println(machineItems.get(i).getName() + " " + machineItems.get(i).getPrice() + " $" + newBalance);
+                if (machineItems.get(i).getType().equals("Chip")) {
+
+                    System.out.println(chipMessage.getMessage());
+
+                }
+            }
+        }
 
 
-
-    //put each line into file
-    //date - time - (the method or snack name) - amount deposited - new balance
+        //put each line into file
+        //date - time - (the method or snack name) - amount deposited - new balance
+        /*
     String filePath = "C:\\Users\\Student\\workspace\\nlr-8-module-1-capstone-orange-team-7\\Log.txt";
     File vendingMachineLog = new File(filePath);
     public String logTransaction() {
@@ -89,13 +107,15 @@ public class VendingMachine {
         } catch(Exception ex) {
             System.out.println("Unable to write to file");
         }
-
+*/
+        return chipMessage.getMessage();
     }
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
 

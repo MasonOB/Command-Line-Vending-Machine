@@ -1,8 +1,6 @@
 package com.techelevator.system;
 
-import java.math.BigDecimal;
-
-public class Candy extends VendingMachineItem implements Purchasable{
+public class Candy extends VendingMachineItem implements Dispensable {
 
 
     public Candy(String slotIdentifier, String name, String price, String type) {

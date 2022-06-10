@@ -1,6 +1,6 @@
 package com.techelevator.system;
 
-public interface Purchasable {
+public interface Dispensable {
 
     String getMessage();
 }
