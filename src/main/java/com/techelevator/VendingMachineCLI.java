@@ -43,7 +43,9 @@ public class VendingMachineCLI {
     }
 
     public void run() {
+
         itemDisplay.runMenu();
+
         while (true) {
             String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
             if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
@@ -74,8 +76,12 @@ public class VendingMachineCLI {
                             balance = itemDisplay.addToPurchase(slotPicked, balance);
                             itemDisplay.dispenseItem(slotPicked);
                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
+                            itemDisplay.logTransaction("GIVE CHANGE: $" + getBalance() + " $0.00");
                             itemDisplay.dispenseChange();
+
+
                             System.out.println("Thanks, breh");
+                            break;
                         }
                     }
                 } catch (Exception ex) {
@@ -85,6 +91,7 @@ public class VendingMachineCLI {
 
             } else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
                 System.out.println("Have a nice day, simp");
+                break;
             }
         }
     }

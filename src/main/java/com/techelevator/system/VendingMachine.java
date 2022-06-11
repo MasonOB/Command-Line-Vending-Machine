@@ -9,6 +9,8 @@ import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,6 +23,7 @@ public class VendingMachine {
     Gum gumMessage = new Gum();
     Drink drinkMessage = new Drink();
     Candy candyMessage = new Candy();
+
 
     public VendingMachine() {
 
@@ -99,22 +102,6 @@ public class VendingMachine {
                 }
             }
         }
-
-
-        //put each line into file
-        //date - time - (the method or snack name) - amount deposited - new balance
-        /*
-    String filePath = "C:\\Users\\Student\\workspace\\nlr-8-module-1-capstone-orange-team-7\\Log.txt";
-    File vendingMachineLog = new File(filePath);
-    public String logTransaction() {
-        try(PrintWriter logger = new PrintWriter(new FileOutputStream(vendingMachineLog, true))) {
-
-
-
-        } catch(Exception ex) {
-            System.out.println("Unable to write to file");
-        }
-*/
         return "";
     }
 
@@ -127,18 +114,37 @@ public class VendingMachine {
         BigDecimal twentyFive = new BigDecimal(25);
         BigDecimal numberOfQuarters = newBalance.divide(twentyFive, RoundingMode.DOWN);
 
-        if (newBalance.remainder(twentyFive) == zero) {
+        if (newBalance.remainder(twentyFive).equals(zero)) {
             return "Here is your change: " + numberOfQuarters + " quarters";
-        } else if (newBalance.remainder(twentyFive) == five) {
+        } else if (newBalance.remainder(twentyFive).equals(five)) {
             return "Here is your change: " + numberOfQuarters + " quarters, 2 dimes";
-        } else if (newBalance.remainder(twentyFive) == ten) {
+        } else if (newBalance.remainder(twentyFive).equals(ten)) {
             return "Here is your change: " + numberOfQuarters + " quarters, 1 dime, 1 nickel";
-        } else if (newBalance.remainder(twentyFive) == fifteen) {
+        } else if (newBalance.remainder(twentyFive).equals(fifteen)) {
             return "Here is your change: " + numberOfQuarters + " quarters, 1 dime";
-        } else if (newBalance.remainder(twentyFive) == twenty) {
+        } else if (newBalance.remainder(twentyFive).equals(twenty)) {
             return "Here is your change: " + numberOfQuarters + " quarters, 1 nickel";
         }
         this.newBalance = BigDecimal.valueOf(0.00);
+        return "";
+    }
+
+
+    public String logTransaction(String transactionMessage) {
+
+        File logFile = new File("C:\\Users\\Student\\workspace\\nlr-8-module-1-capstone-orange-team-7\\Log.txt");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+
+
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream(logFile, true))) {
+
+            writer.write(dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + "\n");
+
+        //date - time - (the method or snack name) - amount deposited - new balance
+
+        } catch(FileNotFoundException ex) {
+            System.out.println("File not found.");
+        }
         return "";
     }
 
