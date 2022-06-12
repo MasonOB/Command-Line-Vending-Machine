@@ -69,14 +69,16 @@ public class VendingMachineCLI {
                         String nextMenuChoice = (String) secondMenu.getChoiceFromOptions(SECOND_MENU_OPTIONS);
                         if (nextMenuChoice.equals(SECOND_MENU_OPTION_FEED_MONEY)) {
                             balance = new BigDecimal(balance + moneyInputAmount);
+                            itemDisplay.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " " + (moneyInputAmount + getBalance()));
                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_SELECT_PRODUCT)) {
                             System.out.println(itemDisplay);
                             System.out.println("Please enter slot number: ");
                             String slotPicked = userInput.nextLine();
                             balance = itemDisplay.addToPurchase(slotPicked, balance);
+                            itemDisplay.logTransaction(slotPicked, 2, null);
                             itemDisplay.dispenseItem(slotPicked);
                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
-                            itemDisplay.logTransaction("GIVE CHANGE: $" + getBalance() + " $0.00");
+                            itemDisplay.logTransaction(null, 3, " GIVE CHANGE: $" + getBalance() + " $0.00");
                             itemDisplay.dispenseChange();
 
 

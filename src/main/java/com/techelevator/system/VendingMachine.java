@@ -1,14 +1,11 @@
 package com.techelevator.system;
 
-import com.techelevator.VendingMachineCLI;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -130,24 +127,39 @@ public class VendingMachine {
     }
 
 
-    public String logTransaction(String transactionMessage) {
+    public String logTransaction(String slotPicked, int logType, String transactionMessage) {
+
+        String itemName = "";
+        String itemPrice = "";
+
+        for (int i = 0; i < machineItems.size(); i++) {
+            if (machineItems.get(i).getSlotIdentifier().equals(slotPicked)) {
+                itemName = machineItems.get(i).getName();
+                itemPrice = machineItems.get(i).getPrice();
+            }
 
         File logFile = new File("C:\\Users\\Student\\workspace\\nlr-8-module-1-capstone-orange-team-7\\Log.txt");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
 
-
         try (PrintWriter writer = new PrintWriter(new FileOutputStream(logFile, true))) {
 
-            writer.write(dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + "\n");
-
-        //date - time - (the method or snack name) - amount deposited - new balance
+            //date - time - (the method or snack name) - amount deposited - new balance
+            if (logType == 1) {
+                writer.write(dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + "\n");
+            } else if (logType == 2) {
+                writer.write((dateTimeFormatter.format(LocalDateTime.now())) + " " + itemName + " " + slotPicked + " " + itemPrice + " " + newBalance + "\n");
+            } else if (logType == 3) {
+               writer.write((dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + "\n"));
+            }
 
         } catch(FileNotFoundException ex) {
             System.out.println("File not found.");
         }
-        return "";
-    }
 
+    }
+        return "";
+
+}
 }
 
 
