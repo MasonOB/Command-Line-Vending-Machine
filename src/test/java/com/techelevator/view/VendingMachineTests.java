@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class VendingMachineTests {
 
@@ -90,4 +92,37 @@ public class VendingMachineTests {
 
         Assert.assertEquals("2.10 did not return 8 quarters, 1 dime", "Here is your change: 8 quarters, 1 dime", result);
     }
+
+    VendingMachine transactionLog = new VendingMachine();
+    public void setTransactionLog() { this.transactionLog = transactionLog; }
+
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+
+    @Test
+    public void test_log_1_returns_correct_string() {
+
+        String result = transactionLog.logTransaction(null, 1, "Test Message", BigDecimal.valueOf(10.00));
+
+        Assert.assertEquals("Log Type 1 did not return correct string", dateTimeFormatter.format(LocalDateTime.now()) + "Test Message $" + BigDecimal.valueOf(10.00), result);
+
+    }
+
+    @Test
+    public void test_log_2_returns_correct_string() {
+
+        String result = transactionLog.logTransaction("A1", 2, null, BigDecimal.valueOf(10.00));
+
+        Assert.assertEquals("Log Type 2 did not return correct string", dateTimeFormatter.format(LocalDateTime.now()) + "Potato Crisps A1 $3.05 $" + BigDecimal.valueOf(6.95), result);
+
+    }
+
+    @Test
+    public void test_log_3_returns_correct_string() {
+
+        String result = transactionLog.logTransaction(null, 3, "Test Message", BigDecimal.valueOf(0.00));
+
+        Assert.assertEquals("Log Type 3 did not return correct string", dateTimeFormatter.format(LocalDateTime.now()) + "Test Message $" + BigDecimal.valueOf(0.00), result);
+
+    }
+
 }

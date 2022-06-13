@@ -83,7 +83,7 @@ public class VendingMachineCLI {
                                 }
                                         if (nextMenuChoice.equals(SECOND_MENU_OPTION_FEED_MONEY)) {
                                             balance = new BigDecimal(balance + moneyInputAmount);
-                                            transactionLog.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " " + (moneyInputAmount + getBalance()), balance);
+                                            transactionLog.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " $" + (moneyInputAmount + getBalance()), balance);
                                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_SELECT_PRODUCT)) {
                                             System.out.println(itemDisplay);
                                             System.out.println("Please enter slot number: ");
@@ -96,7 +96,7 @@ public class VendingMachineCLI {
                                             transactionLog.logTransaction(slotPicked, 2, null, balance);
                                             dispenseItemDisplay.dispenseItem(slotPicked, balance);
                                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
-                                            transactionLog.logTransaction(null, 3, " GIVE CHANGE: $" + getBalance() + " $0.00", balance);
+                                            transactionLog.logTransaction(null, 3, " GIVE CHANGE: $" + balance + " $", BigDecimal.valueOf(0.00));
                                             dispenseChangeDisplay.dispenseChange(balance);
                                             System.out.println("Thanks, breh");
                                             break;

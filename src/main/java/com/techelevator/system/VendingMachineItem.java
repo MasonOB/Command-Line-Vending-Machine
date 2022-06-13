@@ -9,28 +9,20 @@ public class VendingMachineItem extends VendingMachine implements Dispensable{
     private String name;
     private String price;
     private String type;
-    private int numOfItems = 5;
+    private int numOfItems;
     private String message;
 
     public String getMessage() {
         return message;
     }
 
-    public VendingMachineItem(String slotIdentifier) {
-        this.slotIdentifier = slotIdentifier;
-    }
 
-    public VendingMachineItem(String price, int numOfItems) {
-        this.price = price;
-        this.numOfItems = numOfItems;
-    }
-
-
-    public VendingMachineItem(String slotIdentifier, String name, String price, String type) {
+    public VendingMachineItem(String slotIdentifier, String name, String price, String type, int numOfItems) {
         this.slotIdentifier = slotIdentifier;
         this.name = name;
         this.price = price;
         this.type = type;
+        this.numOfItems = numOfItems;
 
     }
 

@@ -40,7 +40,7 @@ public class VendingMachine {
                 String name = itemDetails[1];
                 String price = itemDetails[2];
                 String type = itemDetails[3];
-                machineItems.add(new VendingMachineItem(slotIdentifier, name, price, type));
+                machineItems.add(new VendingMachineItem(slotIdentifier, name, price, type, 5));
             }
             return machineItems;
 
@@ -65,8 +65,9 @@ public class VendingMachine {
         //
 
 
+
         for (int i = 0; i < machineItems.size(); i++) {
-            if (machineItems.get(i).getSlotIdentifier().equals(slotPicked)) {
+            if (machineItems.get(i).getSlotIdentifier().equals(slotPicked) && machineItems.get(i).getNumOfItems() > 0) {
 
                 int numberOfItem = machineItems.get(i).getNumOfItems();
                 numberOfItem -= 1;
@@ -79,6 +80,8 @@ public class VendingMachine {
 
                 return newBalance;
 
+            } else {
+                System.out.println("SOLD OUT");
             }
         }
         return balance;
@@ -148,11 +151,11 @@ public class VendingMachine {
 
             //date - time - (the method or snack name) - amount deposited - new balance
             if (logType == 1) {
-                writer.write(dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + balance +"\n");
+                writer.write(dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + " $" + balance +"\n");
             } else if (logType == 2) {
-                writer.write((dateTimeFormatter.format(LocalDateTime.now())) + " " + itemName + " " + slotPicked + " " + itemPrice + " " + balance + "\n");
+                writer.write((dateTimeFormatter.format(LocalDateTime.now())) + " " + itemName + " " + slotPicked + " $" + itemPrice + " $" + balance + "\n");
             } else if (logType == 3) {
-               writer.write((dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + balance + "\n"));
+               writer.write((dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + " $" + balance + "\n"));
             }
 
         } catch(FileNotFoundException ex) {
