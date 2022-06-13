@@ -30,6 +30,7 @@ public class VendingMachine {
 
     public List<VendingMachineItem> machineItems = new ArrayList<>();
 
+
     public List<VendingMachineItem> runMenu() {
         try (Scanner menuReader = new Scanner(vendingMachineMenu)) {
             while (menuReader.hasNextLine()) {
@@ -76,14 +77,16 @@ public class VendingMachine {
 
                 newBalance = balance.subtract(convertedPrice);
 
+                return newBalance;
+
             }
         }
-        return newBalance;
+        return balance;
 
     }
 
     //prints name, cost, money remaining, and returns the message based on the Type
-    public String dispenseItem(String slotPicked) {
+    public String dispenseItem(String slotPicked, BigDecimal newBalance) {
 
         for (int i = 0; i < machineItems.size(); i++) {
             if (machineItems.get(i).getSlotIdentifier().equals(slotPicked)) {
@@ -102,7 +105,7 @@ public class VendingMachine {
         return "";
     }
 
-    public String dispenseChange() {
+    public String dispenseChange(BigDecimal newBalance) {
         BigDecimal zero = new BigDecimal(0);
         BigDecimal five = new BigDecimal(5);
         BigDecimal ten = new BigDecimal(10);
@@ -127,7 +130,7 @@ public class VendingMachine {
     }
 
 
-    public String logTransaction(String slotPicked, int logType, String transactionMessage) {
+    public String logTransaction(String slotPicked, int logType, String transactionMessage, BigDecimal balance) {
 
         String itemName = "";
         String itemPrice = "";
@@ -145,11 +148,11 @@ public class VendingMachine {
 
             //date - time - (the method or snack name) - amount deposited - new balance
             if (logType == 1) {
-                writer.write(dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + "\n");
+                writer.write(dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + balance +"\n");
             } else if (logType == 2) {
-                writer.write((dateTimeFormatter.format(LocalDateTime.now())) + " " + itemName + " " + slotPicked + " " + itemPrice + " " + newBalance + "\n");
+                writer.write((dateTimeFormatter.format(LocalDateTime.now())) + " " + itemName + " " + slotPicked + " " + itemPrice + " " + balance + "\n");
             } else if (logType == 3) {
-               writer.write((dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + "\n"));
+               writer.write((dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + balance + "\n"));
             }
 
         } catch(FileNotFoundException ex) {

@@ -29,6 +29,8 @@ public class VendingMachineCLI {
     private BigDecimal balance = new BigDecimal("0.00");
 
     VendingMachine itemDisplay = new VendingMachine();
+    VendingMachine dispenseItemDisplay = new VendingMachine();
+    VendingMachine dispenseChangeDisplay = new VendingMachine();
     VendingMachine transactionLog = new VendingMachine();
 
     Scanner userInput = new Scanner(System.in);
@@ -59,39 +61,56 @@ public class VendingMachineCLI {
                 // do purchase
                 System.out.println("Please enter money into the slot ($1, $5, or $10 bills) and enter amount to the cent (i.e. one dollar is \"1.00\": ");
                 String moneyInputAmount = userInput.nextLine();
-
-
-                try {
-                    balance = balance.add(new BigDecimal(moneyInputAmount));
-                    while (true) {
-                        System.out.println("Current Money Provided: $" + moneyInputAmount);
-                        System.out.println("");
-                        String nextMenuChoice = (String) secondMenu.getChoiceFromOptions(SECOND_MENU_OPTIONS);
-                        if (nextMenuChoice.equals(SECOND_MENU_OPTION_FEED_MONEY)) {
-                            balance = new BigDecimal(balance + moneyInputAmount);
-                            itemDisplay.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " " + (moneyInputAmount + getBalance()));
-                        } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_SELECT_PRODUCT)) {
-                            System.out.println(itemDisplay);
-                            System.out.println("Please enter slot number: ");
-                            String slotPicked = userInput.nextLine();
-                            balance = itemDisplay.addToPurchase(slotPicked, balance);
-                            itemDisplay.logTransaction(slotPicked, 2, null);
-                            itemDisplay.dispenseItem(slotPicked);
-                        } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
-                            itemDisplay.logTransaction(null, 3, " GIVE CHANGE: $" + getBalance() + " $0.00");
-                            itemDisplay.dispenseChange();
-
-
-                            System.out.println("Thanks, breh");
-                            break;
+                if (!moneyInputAmount.equals("1.00")) {
+                    if (!moneyInputAmount.equals("5.00")) {
+                        if (!moneyInputAmount.equals("10.00")) {
+                            System.out.println("Please enter \"1.00\", \"5.00\", or \"10.00\"");
                         }
-                    }
-                } catch (Exception ex) {
-                    System.out.println("Please enter a valid amount.");
 
-                }
 
-            } else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
+                        try {
+                            balance = balance.add(new BigDecimal(moneyInputAmount));
+                            while (true) {
+                                System.out.println("Current Money Provided: $" + moneyInputAmount);
+                                System.out.println("");
+                                String nextMenuChoice = (String) secondMenu.getChoiceFromOptions(SECOND_MENU_OPTIONS);
+                                if (!nextMenuChoice.equals(SECOND_MENU_OPTION_FEED_MONEY)) {
+                                    if (!nextMenuChoice.equals(SECOND_MENU_OPTION_SELECT_PRODUCT)) {
+                                        if (!nextMenuChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
+                                            System.out.println("Please select 1, 2, or, 3");
+                                        }
+                                    }
+                                }
+                                        if (nextMenuChoice.equals(SECOND_MENU_OPTION_FEED_MONEY)) {
+                                            balance = new BigDecimal(balance + moneyInputAmount);
+                                            transactionLog.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " " + (moneyInputAmount + getBalance()), balance);
+                                        } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_SELECT_PRODUCT)) {
+                                            System.out.println(itemDisplay);
+                                            System.out.println("Please enter slot number: ");
+                                            String slotPicked = userInput.nextLine();
+                                            if (itemDisplay.getMachineItems().contains(slotPicked)) {
+                                                balance = itemDisplay.addToPurchase(slotPicked, balance);
+                                            } else {
+                                                System.out.println("Selection was not valid");
+                                            }
+                                            transactionLog.logTransaction(slotPicked, 2, null, balance);
+                                            dispenseItemDisplay.dispenseItem(slotPicked, balance);
+                                        } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
+                                            transactionLog.logTransaction(null, 3, " GIVE CHANGE: $" + getBalance() + " $0.00", balance);
+                                            dispenseChangeDisplay.dispenseChange(balance);
+                                            System.out.println("Thanks, breh");
+                                            break;
+                                        }
+                                    }
+                                } catch(Exception ex){
+                            System.out.println("Please enter a valid amount.");
+
+                                }
+
+                            }
+                            }
+
+                } else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
                 System.out.println("Have a nice day, simp");
                 break;
             }
