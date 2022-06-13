@@ -65,7 +65,6 @@ public class VendingMachine {
         //
 
 
-
         for (int i = 0; i < machineItems.size(); i++) {
             if (machineItems.get(i).getSlotIdentifier().equals(slotPicked) && machineItems.get(i).getNumOfItems() > 0) {
 
@@ -122,23 +121,21 @@ public class VendingMachine {
         BigDecimal five = new BigDecimal(5);
         BigDecimal ten = new BigDecimal(10);
         BigDecimal fifteen = new BigDecimal(15);
-        BigDecimal twenty = new BigDecimal(20);
         BigDecimal twentyFive = new BigDecimal(25);
-        BigDecimal numberOfQuarters = newBalance.divide(twentyFive, RoundingMode.DOWN);
+        BigDecimal pointTwoFive = new BigDecimal(0.25);
+        BigDecimal numberOfQuarters = newBalance.divide(pointTwoFive, RoundingMode.DOWN);
 
         if (newBalance.remainder(twentyFive).equals(zero)) {
-            return "Here is your change: " + numberOfQuarters + " quarters";
+            return "Here is your change: " + numberOfQuarters.setScale(0, RoundingMode.DOWN) + " quarters";
         } else if (newBalance.remainder(twentyFive).equals(five)) {
-            return "Here is your change: " + numberOfQuarters + " quarters, 2 dimes";
+            return "Here is your change: " + numberOfQuarters.setScale(0, RoundingMode.DOWN) + " quarters, 2 dimes";
         } else if (newBalance.remainder(twentyFive).equals(ten)) {
-            return "Here is your change: " + numberOfQuarters + " quarters, 1 dime, 1 nickel";
+            return "Here is your change: " + numberOfQuarters.setScale(0, RoundingMode.DOWN) + " quarters, 1 dime, 1 nickel";
         } else if (newBalance.remainder(twentyFive).equals(fifteen)) {
-            return "Here is your change: " + numberOfQuarters + " quarters, 1 dime";
-        } else if (newBalance.remainder(twentyFive).equals(twenty)) {
-            return "Here is your change: " + numberOfQuarters + " quarters, 1 nickel";
+            return "Here is your change: " + numberOfQuarters.setScale(0, RoundingMode.DOWN) + " quarters, 1 dime";
+        } else {
+            return "Here is your change: " + numberOfQuarters.setScale(0, RoundingMode.DOWN) + " quarters, 1 nickel";
         }
-        this.newBalance = BigDecimal.valueOf(0.00);
-        return "";
     }
 
 
@@ -147,11 +144,6 @@ public class VendingMachine {
         String itemName = "";
         String itemPrice = "";
 
-        for (int i = 0; i < machineItems.size(); i++) {
-            if (machineItems.get(i).getSlotIdentifier().equals(slotPicked)) {
-                itemName = machineItems.get(i).getName();
-                itemPrice = machineItems.get(i).getPrice();
-            }
 
         File logFile = new File("C:\\Users\\Student\\workspace\\nlr-8-module-1-capstone-orange-team-7\\Log.txt");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
@@ -160,21 +152,29 @@ public class VendingMachine {
 
             //date - time - (the method or snack name) - amount deposited - new balance
             if (logType == 1) {
-                writer.write(dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + " $" + balance +"\n");
+                writer.write(dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + balance + "\n");
             } else if (logType == 2) {
+                for (int i = 0; i < machineItems.size(); i++) {
+                    if (machineItems.get(i).getSlotIdentifier().equals(slotPicked)) {
+                        itemName = machineItems.get(i).getName();
+                        itemPrice = machineItems.get(i).getPrice();
+                        break;
+                    }
+                }
+
                 writer.write((dateTimeFormatter.format(LocalDateTime.now())) + " " + itemName + " " + slotPicked + " $" + itemPrice + " $" + balance + "\n");
             } else if (logType == 3) {
-               writer.write((dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + " $" + balance + "\n"));
+               writer.write((dateTimeFormatter.format(LocalDateTime.now()) + transactionMessage + balance + "\n"));
             }
 
         } catch(FileNotFoundException ex) {
             System.out.println("File not found.");
         }
 
-    }
         return "";
+    }
 
-}
+
 }
 
 

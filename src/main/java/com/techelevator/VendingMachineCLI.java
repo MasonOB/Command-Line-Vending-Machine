@@ -28,12 +28,10 @@ public class VendingMachineCLI {
     private Menu menu;
     private Menu secondMenu;
     private BigDecimal balance = new BigDecimal("0.00");
-    private BigDecimal addition = new BigDecimal("0.00");
+    private BigDecimal resetBalance = new BigDecimal("0.00");
 
     VendingMachine itemDisplay = new VendingMachine();
-    VendingMachine dispenseItemDisplay = new VendingMachine();
-    VendingMachine dispenseChangeDisplay = new VendingMachine();
-    VendingMachine transactionLog = new VendingMachine();
+
 
     Scanner userInput = new Scanner(System.in);
 
@@ -63,10 +61,10 @@ public class VendingMachineCLI {
                 // do purchase
                 System.out.println("Please enter money into the slot ($1, $5, or $10 bills) and enter amount to the cent (i.e. one dollar is \"1.00\"): ");
                 String moneyInputAmount = userInput.nextLine();
-                transactionLog.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " $" + (moneyInputAmount + getBalance()), balance);
+                balance = balance.add(new BigDecimal(moneyInputAmount));
+                itemDisplay.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " $", balance);
 
                         try {
-                            balance = balance.add(new BigDecimal(moneyInputAmount));
                             while (true) {
                                 System.out.println("Current Money Provided: $" + balance);
                                 String nextMenuChoice = (String) menu.getChoiceFromOptions(SECOND_MENU_OPTIONS);
@@ -74,7 +72,7 @@ public class VendingMachineCLI {
                                             System.out.println("Please enter money into the slot ($1, $5, or $10 bills) and enter amount to the cent (i.e. one dollar is \"1.00\"): ");
                                             moneyInputAmount = userInput.nextLine();
                                             balance = balance.add(new BigDecimal(moneyInputAmount));
-                                            transactionLog.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " $" + (moneyInputAmount + getBalance()), balance);
+                                            itemDisplay.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " $", balance);
                                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_SELECT_PRODUCT)) {
                                             for (VendingMachineItem item : itemDisplay.getMachineItems()) {
                                                 System.out.println(item);
@@ -86,11 +84,11 @@ public class VendingMachineCLI {
                                             } else {
                                                 System.out.println("Selection was not valid");
                                             }
-                                            transactionLog.logTransaction(slotPicked, 2, null, balance);
+                                            itemDisplay.logTransaction(slotPicked, 2, null, balance);
                                             itemDisplay.dispenseItem(slotPicked, balance);
                                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
-                                            transactionLog.logTransaction(null, 3, " GIVE CHANGE: $" + balance + " $", BigDecimal.valueOf(0.00));
-                                            itemDisplay.dispenseChange(balance);
+                                            itemDisplay.logTransaction(null, 3, " GIVE CHANGE: $" + balance + " $", resetBalance);
+                                            System.out.println(itemDisplay.dispenseChange(balance));
                                             System.out.println("Thanks, breh");
                                         }
                                     }
