@@ -7,8 +7,8 @@ public class Chip extends VendingMachineItem implements Dispensable {
 
     }
 
-    public Chip(String slotIdentifier, String name, String price, String type) {
-        super(slotIdentifier, name, price, type);
+    public Chip(String slotIdentifier, String name, String price, String type, int numOfItems) {
+        super(slotIdentifier, name, price, type, numOfItems);
     }
 
     public void setMessage() {

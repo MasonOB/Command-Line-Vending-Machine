@@ -2,7 +2,7 @@ package com.techelevator.system;
 
 import java.math.BigDecimal;
 
-public class VendingMachineItem extends VendingMachine implements Dispensable{
+public class VendingMachineItem implements Dispensable{
 
     //instance variables
     private String slotIdentifier;
