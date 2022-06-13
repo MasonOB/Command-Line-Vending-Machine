@@ -28,7 +28,7 @@ public class VendingMachineCLI {
     private Menu menu;
     private Menu secondMenu;
     private BigDecimal balance = new BigDecimal("0.00");
-
+    private BigDecimal addition = new BigDecimal("0.00");
 
     VendingMachine itemDisplay = new VendingMachine();
     VendingMachine dispenseItemDisplay = new VendingMachine();
@@ -63,12 +63,12 @@ public class VendingMachineCLI {
                 // do purchase
                 System.out.println("Please enter money into the slot ($1, $5, or $10 bills) and enter amount to the cent (i.e. one dollar is \"1.00\"): ");
                 String moneyInputAmount = userInput.nextLine();
+                transactionLog.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " $" + (moneyInputAmount + getBalance()), balance);
 
                         try {
                             balance = balance.add(new BigDecimal(moneyInputAmount));
                             while (true) {
-                                System.out.println("Current Money Provided: $" + moneyInputAmount);
-                                System.out.println("");
+                                System.out.println("Current Money Provided: $" + balance);
                                 String nextMenuChoice = (String) menu.getChoiceFromOptions(SECOND_MENU_OPTIONS);
                                         if (nextMenuChoice.equals(SECOND_MENU_OPTION_FEED_MONEY)) {
                                             System.out.println("Please enter money into the slot ($1, $5, or $10 bills) and enter amount to the cent (i.e. one dollar is \"1.00\"): ");
@@ -76,19 +76,21 @@ public class VendingMachineCLI {
                                             balance = balance.add(new BigDecimal(moneyInputAmount));
                                             transactionLog.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " $" + (moneyInputAmount + getBalance()), balance);
                                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_SELECT_PRODUCT)) {
-                                            System.out.println(itemDisplay);
+                                            for (VendingMachineItem item : itemDisplay.getMachineItems()) {
+                                                System.out.println(item);
+                                            }
                                             System.out.println("Please enter slot number: ");
                                             String slotPicked = userInput.nextLine();
-                                            if (itemDisplay.getMachineItems().contains(slotPicked)) {
+                                            if (itemDisplay.validateSlotSelection(slotPicked)) {
                                                 balance = itemDisplay.addToPurchase(slotPicked, balance);
                                             } else {
                                                 System.out.println("Selection was not valid");
                                             }
                                             transactionLog.logTransaction(slotPicked, 2, null, balance);
-                                            dispenseItemDisplay.dispenseItem(slotPicked, balance);
+                                            itemDisplay.dispenseItem(slotPicked, balance);
                                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
                                             transactionLog.logTransaction(null, 3, " GIVE CHANGE: $" + balance + " $", BigDecimal.valueOf(0.00));
-                                            dispenseChangeDisplay.dispenseChange(balance);
+                                            itemDisplay.dispenseChange(balance);
                                             System.out.println("Thanks, breh");
                                         }
                                     }

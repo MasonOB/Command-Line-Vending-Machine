@@ -88,6 +88,15 @@ public class VendingMachine {
 
     }
 
+    public boolean validateSlotSelection(String slotPicked) {
+        for (int i = 0; i < machineItems.size(); i++) {
+            if (machineItems.get(i).getSlotIdentifier().equals(slotPicked)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //prints name, cost, money remaining, and returns the message based on the Type
     public String dispenseItem(String slotPicked, BigDecimal newBalance) {
 
