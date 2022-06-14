@@ -20,7 +20,7 @@ public class VendingMachine {
     Gum gumMessage = new Gum();
     Drink drinkMessage = new Drink();
     Candy candyMessage = new Candy();
-
+    String returnMessage = "";
 
     public VendingMachine() {
 
@@ -79,8 +79,9 @@ public class VendingMachine {
 
                 return newBalance;
 
-            } else {
+            } else if (machineItems.get(i).getSlotIdentifier().equals(slotPicked) && machineItems.get(i).getNumOfItems() == 0) {
                 System.out.println("SOLD OUT");
+                break;
             }
         }
         return balance;
@@ -103,17 +104,21 @@ public class VendingMachine {
             if (machineItems.get(i).getSlotIdentifier().equals(slotPicked)) {
                 System.out.println(machineItems.get(i).getName() + " " + machineItems.get(i).getPrice() + " $" + newBalance);
                 if (machineItems.get(i).getType().equals("Chip")) {
-                    System.out.println(chipMessage.getMessage());
+                    returnMessage = chipMessage.getMessage();
+                    break;
                 } else if (machineItems.get(i).getType().equals("Gum")) {
-                    System.out.println(gumMessage.getMessage());
+                    returnMessage =  gumMessage.getMessage();
+                    break;
                 } else if (machineItems.get(i).getType().equals("Candy")) {
-                    System.out.println(candyMessage.getMessage());
-                } else if (machineItems.get(i).getType().equals("Drink")) {
-                    System.out.println(drinkMessage.getMessage());
+                    returnMessage =  candyMessage.getMessage();
+                    break;
+                } else {
+                    returnMessage =  drinkMessage.getMessage();
+                    break;
                 }
             }
         }
-        return "";
+        return returnMessage;
     }
 
     public String dispenseChange(BigDecimal newBalance) {

@@ -59,7 +59,7 @@ public class VendingMachineCLI {
 
             } else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
                 // do purchase
-                System.out.println("Please enter money into the slot ($1, $5, or $10 bills) and enter amount to the cent (i.e. one dollar is \"1.00\"): ");
+                System.out.println("Please enter money in whole dollar amounts (i.e. one dollar is \"1\"): ");
                 String moneyInputAmount = userInput.nextLine();
                 balance = balance.add(new BigDecimal(moneyInputAmount));
                 itemDisplay.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " $", balance);
@@ -85,7 +85,7 @@ public class VendingMachineCLI {
                                                 System.out.println("Selection was not valid");
                                             }
                                             itemDisplay.logTransaction(slotPicked, 2, null, balance);
-                                            itemDisplay.dispenseItem(slotPicked, balance);
+                                            System.out.println(itemDisplay.dispenseItem(slotPicked, balance));
                                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
                                             itemDisplay.logTransaction(null, 3, " GIVE CHANGE: $" + balance + " $", resetBalance);
                                             System.out.println(itemDisplay.dispenseChange(balance));

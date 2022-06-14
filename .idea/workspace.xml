@@ -43,12 +43,12 @@
       <recent name="com.techelevator.view" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.VendingMachineCLI">
+  <component name="RunManager" selected="JUnit.VendingMachineTests">
     <configuration name="VendingMachineCLI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../Program Files/OpenJDK/jdk-11.0.13+8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.techelevator.VendingMachineCLI" />
-      <module name="nlr-8-module-1-capstone-orange-team-7" />
+      <module name="m1-java-capstone-vending-machine" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.techelevator.view.*" />
@@ -74,10 +74,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="VendingMachineTests.test_that_A4_returns_chip_message" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="m1-java-capstone-vending-machine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.techelevator.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.techelevator.view" />
+      <option name="MAIN_CLASS_NAME" value="com.techelevator.view.VendingMachineTests" />
+      <option name="METHOD_NAME" value="test_that_A4_returns_chip_message" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.VendingMachineCLI" />
         <item itemvalue="JUnit.VendingMachineTests" />
+        <item itemvalue="Application.VendingMachineCLI" />
+        <item itemvalue="JUnit.VendingMachineTests.test_that_A4_returns_chip_message" />
       </list>
     </recent_temporary>
   </component>
@@ -101,13 +118,35 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/techelevator/VendingMachineCLI.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="4" />
+          <line>87</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/techelevator/VendingMachineCLI.java</url>
-          <line>88</line>
-          <option name="timeStamp" value="7" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/com/techelevator/view/VendingMachineTests.java</url>
+          <line>25</line>
+          <properties class="com.techelevator.view.VendingMachineTests" method="test_that_A5_returns_original_balance">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/com/techelevator/view/VendingMachineTests.java</url>
+          <line>41</line>
+          <properties class="com.techelevator.view.VendingMachineTests" method="test_that_A4_returns_chip_message">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/techelevator/system/VendingMachine.java</url>
+          <line>100</line>
+          <properties class="com.techelevator.system.VendingMachine" method="dispenseItem">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
