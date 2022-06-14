@@ -48,7 +48,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../Program Files/OpenJDK/jdk-11.0.13+8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.techelevator.VendingMachineCLI" />
-      <module name="m1-java-capstone-vending-machine" />
+      <module name="nlr-8-module-1-capstone-orange-team-7" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.techelevator.view.*" />
@@ -60,7 +60,7 @@
       </method>
     </configuration>
     <configuration name="VendingMachineTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="m1-java-capstone-vending-machine" />
+      <module name="nlr-8-module-1-capstone-orange-team-7" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.techelevator.view.*" />
@@ -69,6 +69,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.techelevator.view" />
       <option name="MAIN_CLASS_NAME" value="com.techelevator.view.VendingMachineTests" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -116,39 +117,21 @@
           <properties class="java.lang.StackOverflowError" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/techelevator/VendingMachineCLI.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/com/techelevator/view/VendingMachineTests.java</url>
-          <line>25</line>
-          <properties class="com.techelevator.view.VendingMachineTests" method="test_that_A5_returns_original_balance">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/com/techelevator/view/VendingMachineTests.java</url>
-          <line>41</line>
-          <properties class="com.techelevator.view.VendingMachineTests" method="test_that_A4_returns_chip_message">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/techelevator/system/VendingMachine.java</url>
-          <line>100</line>
-          <properties class="com.techelevator.system.VendingMachine" method="dispenseItem">
+          <line>123</line>
+          <properties class="com.techelevator.system.VendingMachine" method="dispenseChange">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="14" />
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/nlr_8_module_1_capstone_orange_team_7$VendingMachineTests.ic" NAME="VendingMachineTests Coverage Results" MODIFIED="1655244959476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.techelevator.view.*</FILTER>
+    </SUITE>
   </component>
 </project>

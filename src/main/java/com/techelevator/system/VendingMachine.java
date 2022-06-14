@@ -122,21 +122,30 @@ public class VendingMachine {
     }
 
     public String dispenseChange(BigDecimal newBalance) {
-        BigDecimal zero = new BigDecimal(0);
+        BigDecimal zero = new BigDecimal(0.00);
         BigDecimal five = new BigDecimal(5);
         BigDecimal ten = new BigDecimal(10);
         BigDecimal fifteen = new BigDecimal(15);
+        BigDecimal pointTen = new BigDecimal(0.10);
+        BigDecimal pointFifteen = new BigDecimal(0.15);
+        BigDecimal pointTwenty = new BigDecimal(0.20);
         BigDecimal twentyFive = new BigDecimal(25);
         BigDecimal pointTwoFive = new BigDecimal(0.25);
         BigDecimal numberOfQuarters = newBalance.divide(pointTwoFive, RoundingMode.DOWN);
+        BigDecimal numOfQuartersRounded = numberOfQuarters.setScale(0, RoundingMode.DOWN);
 
-        if (newBalance.remainder(twentyFive).equals(zero)) {
+        BigDecimal changeBalance = newBalance.subtract(numOfQuartersRounded.multiply(pointTwoFive));
+
+
+
+
+        if (newBalance.compareTo(BigDecimal.ZERO) == 0) {
             return "Here is your change: " + numberOfQuarters.setScale(0, RoundingMode.DOWN) + " quarters";
-        } else if (newBalance.remainder(twentyFive).equals(five)) {
+        } else if (changeBalance.remainder(pointTwenty).compareTo(BigDecimal.ONE) == 1) {
             return "Here is your change: " + numberOfQuarters.setScale(0, RoundingMode.DOWN) + " quarters, 2 dimes";
-        } else if (newBalance.remainder(twentyFive).equals(ten)) {
+        } else if (newBalance.remainder(pointFifteen).compareTo(BigDecimal.ONE) == 1) {
             return "Here is your change: " + numberOfQuarters.setScale(0, RoundingMode.DOWN) + " quarters, 1 dime, 1 nickel";
-        } else if (newBalance.remainder(twentyFive).equals(fifteen)) {
+        } else if (newBalance.remainder(pointTen).compareTo(BigDecimal.ONE) == 1) {
             return "Here is your change: " + numberOfQuarters.setScale(0, RoundingMode.DOWN) + " quarters, 1 dime";
         } else {
             return "Here is your change: " + numberOfQuarters.setScale(0, RoundingMode.DOWN) + " quarters, 1 nickel";

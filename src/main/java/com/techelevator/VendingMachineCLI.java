@@ -29,6 +29,7 @@ public class VendingMachineCLI {
     private Menu secondMenu;
     private BigDecimal balance = new BigDecimal("0.00");
     private BigDecimal resetBalance = new BigDecimal("0.00");
+    private int userInputInt;
 
     VendingMachine itemDisplay = new VendingMachine();
 
@@ -61,7 +62,24 @@ public class VendingMachineCLI {
                 // do purchase
                 System.out.println("Please enter money in whole dollar amounts (i.e. one dollar is \"1\"): ");
                 String moneyInputAmount = userInput.nextLine();
-                balance = balance.add(new BigDecimal(moneyInputAmount));
+
+                while (true) {
+                    try {
+                        userInputInt = Integer.valueOf(moneyInputAmount);
+                        if (userInputInt <= 0) {
+                            System.out.println("Please enter a positive value: ");
+                            break;
+                        } else {
+                            balance = balance.add(new BigDecimal(moneyInputAmount));
+                        }
+                    } catch (NumberFormatException ex) {
+                        System.out.println("Please enter a whole number: ");
+                        break;
+                    }
+                }
+
+
+
                 itemDisplay.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " $", balance);
 
                         try {
@@ -71,7 +89,20 @@ public class VendingMachineCLI {
                                         if (nextMenuChoice.equals(SECOND_MENU_OPTION_FEED_MONEY)) {
                                             System.out.println("Please enter money into the slot ($1, $5, or $10 bills) and enter amount to the cent (i.e. one dollar is \"1.00\"): ");
                                             moneyInputAmount = userInput.nextLine();
-                                            balance = balance.add(new BigDecimal(moneyInputAmount));
+                                            while (true) {
+                                                try {
+                                                    userInputInt = Integer.valueOf(moneyInputAmount);
+                                                    if (userInputInt <= 0) {
+                                                        System.out.println("Please enter a positive value: ");
+                                                        break;
+                                                    } else {
+                                                        balance = balance.add(new BigDecimal(moneyInputAmount));
+                                                    }
+                                                } catch (NumberFormatException ex) {
+                                                    System.out.println("Please enter a whole number: ");
+                                                    break;
+                                                }
+                                            }
                                             itemDisplay.logTransaction(null, 1, " FEED MONEY: $" + moneyInputAmount + " $", balance);
                                         } else if (nextMenuChoice.equals(SECOND_MENU_OPTION_SELECT_PRODUCT)) {
                                             for (VendingMachineItem item : itemDisplay.getMachineItems()) {
