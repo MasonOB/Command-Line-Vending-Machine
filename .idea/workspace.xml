@@ -36,7 +36,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dane-lenhart-student-code/module-2/03_Joins/exercise" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -152,7 +152,7 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/com/techelevator/view/VendingMachineTests.java</url>
-          <line>126</line>
+          <line>130</line>
           <properties class="com.techelevator.view.VendingMachineTests" method="test_log_1_returns_correct_string">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -161,7 +161,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/techelevator/system/VendingMachine.java</url>
-          <line>175</line>
+          <line>142</line>
           <properties class="com.techelevator.system.VendingMachine" method="logTransaction">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

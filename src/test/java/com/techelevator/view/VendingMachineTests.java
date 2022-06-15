@@ -1,5 +1,6 @@
 package com.techelevator.view;
 
+import com.techelevator.VendingMachineCLI;
 import com.techelevator.system.VendingMachine;
 import com.techelevator.system.VendingMachineItem;
 import org.junit.Assert;
@@ -12,6 +13,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class VendingMachineTests {
 
@@ -115,6 +118,7 @@ public class VendingMachineTests {
 
         Assert.assertEquals("2.10 did not return 8 quarters, 1 dime", "Here is your change: 8 quarters, 1 dime", result);
     }
+
 
     VendingMachine transactionLog = new VendingMachine();
 
