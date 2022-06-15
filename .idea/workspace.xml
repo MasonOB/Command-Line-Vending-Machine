@@ -43,12 +43,12 @@
       <recent name="com.techelevator.view" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.VendingMachineTests (1)">
+  <component name="RunManager" selected="Application.VendingMachineCLI">
     <configuration name="VendingMachineCLI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../Program Files/OpenJDK/jdk-11.0.13+8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.techelevator.VendingMachineCLI" />
-      <module name="nlr-8-module-1-capstone-orange-team-7" />
+      <module name="m1-java-capstone-vending-machine" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.techelevator.view.*" />
@@ -124,11 +124,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.VendingMachineTests (1)" />
+        <item itemvalue="Application.VendingMachineCLI" />
         <item itemvalue="JUnit.VendingMachineTests.test_log_1_returns_correct_string" />
+        <item itemvalue="JUnit.VendingMachineTests (1)" />
         <item itemvalue="JUnit.VendingMachineTests.test_that_2_10_returns_8_and_1" />
         <item itemvalue="JUnit.VendingMachineTests" />
-        <item itemvalue="Application.VendingMachineCLI" />
       </list>
     </recent_temporary>
   </component>
@@ -151,15 +151,6 @@
           <option name="timeStamp" value="2" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/techelevator/system/VendingMachine.java</url>
-          <line>123</line>
-          <properties class="com.techelevator.system.VendingMachine" method="dispenseChange">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/com/techelevator/view/VendingMachineTests.java</url>
           <line>126</line>
           <properties class="com.techelevator.view.VendingMachineTests" method="test_log_1_returns_correct_string">
@@ -167,6 +158,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/techelevator/system/VendingMachine.java</url>
+          <line>175</line>
+          <properties class="com.techelevator.system.VendingMachine" method="logTransaction">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
