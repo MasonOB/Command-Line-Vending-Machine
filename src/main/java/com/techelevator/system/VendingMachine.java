@@ -122,6 +122,26 @@ public class VendingMachine {
     }
 
     public String dispenseChange(BigDecimal newBalance) {
+
+        double newDouble = newBalance.doubleValue() * 100;
+        int numberOfQuarters = (int)newDouble / 25;
+
+
+        if (newDouble % 25 == 0) {
+            return "Here is your change: " + numberOfQuarters + " quarters";
+        } else if (newDouble % 25 == 20) {
+            return "Here is your change: " + numberOfQuarters + " quarters, 2 dimes";
+        } else if (newDouble % 25 == 15) {
+            return "Here is your change: " + numberOfQuarters + " quarters, 1 dime, 1 nickel";
+        } else if (newDouble % 25 == 10) {
+            return "Here is your change: " + numberOfQuarters + " quarters, 1 dime";
+        } else {
+            return "Here is your change: " + numberOfQuarters + " quarters, 1 nickel";
+        }
+    }
+
+
+        /*
         BigDecimal zero = new BigDecimal(0.00);
         BigDecimal five = new BigDecimal(5);
         BigDecimal ten = new BigDecimal(10);
@@ -151,7 +171,7 @@ public class VendingMachine {
             return "Here is your change: " + numberOfQuarters.setScale(0, RoundingMode.DOWN) + " quarters, 1 nickel";
         }
     }
-
+*/
 
     public String logTransaction(String slotPicked, int logType, String transactionMessage, BigDecimal balance) {
 

@@ -43,7 +43,7 @@
       <recent name="com.techelevator.view" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.VendingMachineTests">
+  <component name="RunManager" selected="JUnit.VendingMachineTests (1)">
     <configuration name="VendingMachineCLI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../Program Files/OpenJDK/jdk-11.0.13+8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -55,6 +55,21 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VendingMachineTests (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="m1-java-capstone-vending-machine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.techelevator.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.techelevator.view" />
+      <option name="MAIN_CLASS_NAME" value="com.techelevator.view.VendingMachineTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -75,7 +90,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VendingMachineTests.test_that_A4_returns_chip_message" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VendingMachineTests.test_log_1_returns_correct_string" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="m1-java-capstone-vending-machine" />
       <extension name="coverage">
         <pattern>
@@ -85,7 +100,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.techelevator.view" />
       <option name="MAIN_CLASS_NAME" value="com.techelevator.view.VendingMachineTests" />
-      <option name="METHOD_NAME" value="test_that_A4_returns_chip_message" />
+      <option name="METHOD_NAME" value="test_log_1_returns_correct_string" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VendingMachineTests.test_that_2_10_returns_8_and_1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="m1-java-capstone-vending-machine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.techelevator.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.techelevator.view" />
+      <option name="MAIN_CLASS_NAME" value="com.techelevator.view.VendingMachineTests" />
+      <option name="METHOD_NAME" value="test_that_2_10_returns_8_and_1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -93,9 +124,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.VendingMachineTests (1)" />
+        <item itemvalue="JUnit.VendingMachineTests.test_log_1_returns_correct_string" />
+        <item itemvalue="JUnit.VendingMachineTests.test_that_2_10_returns_8_and_1" />
         <item itemvalue="JUnit.VendingMachineTests" />
         <item itemvalue="Application.VendingMachineCLI" />
-        <item itemvalue="JUnit.VendingMachineTests.test_that_A4_returns_chip_message" />
       </list>
     </recent_temporary>
   </component>
@@ -125,6 +158,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/com/techelevator/view/VendingMachineTests.java</url>
+          <line>126</line>
+          <properties class="com.techelevator.view.VendingMachineTests" method="test_log_1_returns_correct_string">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
